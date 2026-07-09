@@ -63,9 +63,9 @@ function Hero() {
       <p className="mb-[26px] max-w-[64ch] text-lg text-muted-foreground">
         lala ingests documents into named projects, answers from that project's context, and gives
         you a dedicated <strong className="text-foreground">Plan:</strong> mode for turning grounded
-        context into action. It runs locally through{" "}
-        <code className="font-mono text-[0.95em]">lala serve</code>, which requires Docker to be
-        installed and running — Docker Desktop is the intended end-user path on Windows and macOS.
+        context into action. It runs locally through <code className="font-mono text-[0.95em]">lala serve</code>, which requires Docker to be
+        installed and running, plus an <code className="font-mono">ai-config.yml</code> and locally
+        available GGUF models.
       </p>
 
       <div className="mb-7 flex flex-wrap gap-3">
@@ -362,26 +362,59 @@ function GetStarted() {
       title: "Install Docker Desktop",
       body: (
         <>
-          <code className="font-mono text-[0.95em]">lala serve</code> depends on Docker being
-          available locally. For Windows and macOS users, Docker Desktop is the intended setup path
-          and should be running before the user starts lala.
+          <code className="font-mono text-[0.95em]">lala serve</code> depends on Docker being available
+          locally. For Windows and macOS users, Docker Desktop is the intended setup path and should
+          be running before the user starts lala.
         </>
       ),
       code: "Install Docker Desktop and verify Docker is running",
     },
     {
       num: "01",
+      title: "Create a working directory with ai-config.yml",
+      body: (
+        <>
+          <code className="font-mono text-[0.95em]">lala</code> expects <code className="font-mono">ai-config.yml</code>
+          in the same directory where the CLI is launched. The file defines the model directory,
+          default work model, and local GGUF model file names.
+        </>
+      ),
+      code: "C:\\lala\\my-project\\ai-config.yml",
+    },
+    {
+      num: "02",
+      title: "Download GGUF models and point the config at them",
+      body: (
+        <>
+          Users must download their own GGUF models. <code className="font-mono">model_dir</code> should
+          point to the folder containing those files, and each <code className="font-mono">model_path</code>
+          entry must match a real file name on disk.
+        </>
+      ),
+      code: `model_dir: "D:\\models"
+default_work_model: "qwen-work"
+
+work_models:
+  - name: "qwen-work"
+    model_path: "qwen2.5-3b-instruct-q4_k_m.gguf"
+
+embedding_model:
+  name: "bge-embedding"
+  model_path: "bge-small-en-v1.5-q4_k_m.gguf"`,
+    },
+    {
+      num: "03",
       title: "Download the Windows binary",
       body: (
         <>
-          Use GitHub Releases as the distribution channel, but don't make "browse the repo" the
+          Use GitHub Releases as the distribution channel, but don’t make “browse the repo” the
           primary action. The page should point directly to the binary release.
         </>
       ),
       code: "lala-v1.x.x-windows-amd64.exe",
     },
     {
-      num: "02",
+      num: "04",
       title: "Bring up the local runtime",
       body: (
         <>
@@ -393,21 +426,16 @@ function GetStarted() {
       code: "lala serve",
     },
     {
-      num: "03",
-      title: "Start lala and create a project",
+      num: "05",
+      title: "Run lala from the same directory",
       body: (
         <>
-          The first-run UX should immediately teach the project workflow. A user with no project
-          should be told exactly what to do next.
+          Launch <code className="font-mono">lala</code> from the directory containing
+          <code className="font-mono">ai-config.yml</code>. The CLI should fail fast with readable
+          errors if the config is missing or if the configured GGUF files do not exist.
         </>
       ),
       code: "lala\n/project create --name my-notes\n/ingest ./docs",
-      note: (
-        <>
-          Launch debt to fix: remove any remaining{" "}
-          <code className="font-mono">cargo run</code> instructions from the first-run binary path.
-        </>
-      ),
     },
   ];
 
