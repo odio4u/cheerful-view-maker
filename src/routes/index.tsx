@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import bannerAsset from "@/assets/lala-banner.png.asset.json";
+import bannerAsset from "@/assets/lala-banner.png";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -113,7 +113,7 @@ function Hero() {
           </div>
           <div className="p-5 pb-[22px] font-mono text-[13px]">
             <img
-              src={bannerAsset.url}
+              src={bannerAsset}
               alt="lala.ai CLI banner — Intelligent · Local first · Reasoning"
               className="mb-4 block max-w-full rounded"
             />
