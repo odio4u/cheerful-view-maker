@@ -77,16 +77,29 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "lala.ai — Local Reasoning for Notes, Docs & Research" },
+      {
+        name: "description",
+        content:
+          "lala.ai is a project-scoped reasoning layer that runs on your machine. Ingest notes, docs, and feeds into projects and reason over them locally.",
+      },
+      { name: "author", content: "lala.ai" },
+      { property: "og:title", content: "lala.ai — Local Reasoning for Notes, Docs & Research" },
+      {
+        property: "og:description",
+        content:
+          "A project-scoped reasoning layer that runs on your machine. Local-first, grounded in your own documents.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,
