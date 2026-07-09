@@ -5,7 +5,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const GITHUB_URL = "https://github.com/dipghoshraj";
+const GITHUB_URL = "https://github.com/dipghoshraj/lala.ai/blob/master/README.md";
 
 function Dots() {
   return (
